@@ -1,3 +1,8 @@
+/*
+ * footnote.js 1.0
+ * (c) 2012 Nicholas Cloud
+ * Distributed under the MIT license.
+ */
 (function (global, $, _, undefined) {
 
   /*
