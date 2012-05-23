@@ -35,6 +35,8 @@ Finally, drop a custom `<script>` tag into the page and invoke the plugin like t
 $('#footnotes').footnotes();
 ```
 
+At this point, your superscripts will be assigned a number and the footnotes in your ordered list will be sorted according to the order of superscript tags in your document.  You don't have to worry about moving paragraphs or sentences around, or inserting new superscripts wherever you want, because each time you refresh the page, they are all sorted and ordered for you automatically.
+
 The plugin takes an optional object parameter that may contain the following properties:
 
 - `superScript` - The string template that will be used for the content of the superscript tag. By default, this is `[#]` where the hash will be replaced with the footnote number. You can use whatever you want, but it has to have a hash in it where you want the number to be inserted.
