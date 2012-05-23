@@ -19,15 +19,15 @@ In the text of your document, use the following convention to declare superscrip
 <p>...some important point that needs citation.<sup data-for="important-point"></sup></p>
 ```
 
-Note that you don't actually specify a footnote number. This will be created for you.  The `data-for` attribute is how you create a link to the associated footnote, at the bottom of the page.
+Note that you don't actually specify a footnote number. This will be created for you.  The `data-for` attribute is how you create a link to the associated footnote.
+
+Create an ordered list at the bottom of the page and add a list item with a `data-footnote` attribute that has the same name as your superscript `data-for` attribute.  This footnote is now linked to the superscript element.
 
 ```html
 <ol id="footnotes">
   <li data-footnote="important-point">As so-and-so has said, blah blah.</li>
 </ol>
 ```
-
-You can use an ordered list or an unordered list, it really doesn't matter too much, but if you use an ordered list you get the benefit of auto-generated numbers.
 
 Finally, drop a custom `<script>` tag into the page and invoke the plugin like this:
 
