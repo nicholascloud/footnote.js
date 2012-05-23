@@ -1,4 +1,53 @@
-footnote.js
-===========
+# footnote.js #
 
-Because manually footing notes sucks.
+## Introduction ##
+
+__Because manually footing notes sucks.__
+
+The idea behind footnote.js is simple.  When you write a paper and you want to include footnotes, the superscripts in your document should be automatically numbered for you, and the footnotes at the bottom should be ordered according to how the superscripts are arranged in your document.  Manually re-ordering footnotes is a pain, so this library does it for you automatically.
+
+## Usage ##
+
+This plugin has two dependencies.  Make sure you include them.
+
+1. jQuery
+2. underscore.js
+
+In the text of your document, use the following convention to declare superscript links to your footnotes:
+
+```html
+<p>...some important point that needs citation.<sup data-for="important-point"></sup></p>
+```
+
+Note that you don't actually specify a footnote number. This will be created for you.  The `data-for` attribute is how you create a link to the associated footnote, at the bottom of the page.
+
+```html
+<ol id="footnotes">
+  <li data-footnote="important-point">As so-and-so has said, blah blah.</li>
+</ol>
+```
+
+You can use an ordered list or an unordered list, it really doesn't matter too much, but if you use an ordered list you get the benefit of auto-generated numbers.
+
+Finally, drop a custom `<script>` tag into the page and invoke the plugin like this:
+
+```javascript
+$('#footnotes').footnotes();
+```
+
+The plugin takes an optional object parameter that may contain the following properties:
+
+- `superScript` - The string template that will be used for the content of the superscript tag. By default, this is `[#]` where the hash will be replaced with the footnote number. You can use whatever you want, but it has to have a hash in it where you want the number to be inserted.
+- `onOrdered` - An optional callback that is fired when the footnotes have been ordered in the document.  The value of `this` in the callback is the element on which the plugin was invoked.
+
+See the demo.html document in this repository for an example of how this works.
+
+-----
+
+    Copyright (c) 2012 Nicholas Cloud
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
