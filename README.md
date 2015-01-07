@@ -43,6 +43,7 @@ The plugin takes an optional object parameter that may contain the following pro
 
 - `superScript` - The string template that will be used for the content of the superscript tag. By default, this is `[#]` where the hash will be replaced with the footnote number. You can use whatever you want, but it has to have a hash in it where you want the number to be inserted.
 - `onOrdered` - An optional callback that is fired when the footnotes have been ordered in the document.  The value of `this` in the callback is the element on which the plugin was invoked.
+- `offset` - Offsets footnote numbering by some number. For example, if the offset is 5, footnote numbering will begin at 6. The default is 0. Note that this will also add the HTML5 [start](http://www.w3schools.com/tags/att_ol_start.asp) attribute to the target element. If the target element is an ordered list its numbering scheme will be adjusted accordingly.
 
 See the demo.html document in this repository for an example of how this works.
 
@@ -50,7 +51,7 @@ See the demo.html document in this repository for an example of how this works.
 
 MIT License
 
-Copyright (c) 2012 Nicholas Cloud
+Copyright (c) 2012-2014 Nicholas Cloud
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

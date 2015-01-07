@@ -1,6 +1,6 @@
 /*
- * footnote.js 1.0
- * (c) 2012 Nicholas Cloud
+ * footnote.js 1.1
+ * (c) 2012-2014 Nicholas Cloud
  * Distributed under the MIT license.
  */
 (function (global, $, _, undefined) {
@@ -17,17 +17,26 @@
 
     options = $.extend({
       superScript: '[#]',
-      onOrdered: function () {}
+      onOrdered: function () {},
+      offset: 0
     }, options || {});
 
-    var superscripts = $('sup[data-for]');
-    var footnotes = this.find('> [data-footnote]');
+    if (isNaN(options.offset)) {
+      options.offset = 0;
+    }
+
+    options.offset = Math.max(0, options.offset);
+
+    $this.attr('start', options.offset + 1);
+
+    var $superscripts = $('sup[data-for]');
+    var $footnotes = this.find('> [data-footnote]');
     this.find('> [data-footnote]').remove();
 
-    superscripts.each(function (index, element) {
+    $superscripts.each(function (index, element) {
       var $element = $(element);
       var forId = $element.attr('data-for');
-      var position = index + 1;
+      var position = (options.offset + index + 1);
 
       /*
        * update the superscript text to reflect its
@@ -41,7 +50,7 @@
        * reposition the footnote to reflect the ordinal
        * position of its superscript
        */
-      var footnote = _.find(footnotes, function (f) {
+      var footnote = _.find($footnotes, function (f) {
         return f.getAttribute('data-footnote') === forId;
       });
       if (!footnote) return;

@@ -72,7 +72,32 @@
     <script type="text/javascript" src="src/footnote.js"></script>
     <script type="text/javascript">
     $().ready(function () {
+
+      /*
+       * If the query string has some offset value, e.g., ?offset=5,
+       * then extract that value. This will be passed to the footnotes
+       * object which will then begin its numbering at 6. A `start`
+       * attribute will also be appended to the <ol> tag which will
+       * adjust the numbering scheme of the list accordingly.
+       *
+       * If no query string parameter is supplied, the offset value
+       * will be zero, which is the default value. Footnote numbering
+       * will then start at 1.
+       *
+       * Try both:
+       * - demo.html
+       * - demo.html?offset=5
+       */
+      var offset = 0;
+      if (location.search) {
+        var matches = /offset=([\d]+)/.exec(location.search);
+        if (matches) {
+          offset = Number(matches[1] || 0);
+        }
+      }
+
       $('#footnotes1').footnotes({
+        offset: offset,
         onOrdered: function () {
           this.show();
         }
